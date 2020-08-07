@@ -1,8 +1,12 @@
 import React, { Fragment, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { Link, Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import { getQuote } from '../../actions/quote'
+
+import Heading from '../ui/heading'
+import { Button } from '../ui/button'
+import { StyledLink } from '../ui/link'
 
 import QuoteItem from '../quotes/QuoteItem'
 
@@ -29,12 +33,12 @@ const Dashboard = ({
   ) : (
     <Fragment>
       {/* temp nav for demo, first 2 should redirect auto */}
-      <Link to="/">Landing</Link>
-      <Link to="/onboarding">Onboarding</Link>
-      <Link to="/dashboard">Dashboard</Link>
-      <Link to="/quotes">My Quotes</Link>
+      <StyledLink variant="primary" to="/">Landing</StyledLink>
+      <StyledLink variant="success" to="/onboarding">Onboarding</StyledLink>
+      <StyledLink variant="info" to="/dashboard">Dashboard</StyledLink>
+      <StyledLink variant="danger" to="/quotes">My Quotes</StyledLink>
       <div className="">
-        <h1>Dashboard</h1>
+        <Heading level="2">Dashboard</Heading>
         {quote && (<QuoteItem quote={quote} />)}
         {/* updateLikes ctas */}
         {/* robo footer ctas */}

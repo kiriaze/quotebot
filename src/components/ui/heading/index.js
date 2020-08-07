@@ -1,6 +1,6 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
-import mq from '../../utils/mq'
+import mq from '../../../utils/mq'
 
 const sharedStyles = css`
   display: block;

@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import { Route, Switch } from 'react-router-dom'
 
 import Onboarding from '../onboarding/Onboarding'
@@ -9,7 +9,7 @@ import NotFound from '../layout/NotFound'
 
 const Routes = () => {
   return (
-    <Fragment>
+    <main role="main">
       <Switch>
         {/* we could implement a private route component, typically we would for dash/quotes/etc, maybe if we have time */}
         <Route exact path="/onboarding" component={Onboarding} />
@@ -17,7 +17,7 @@ const Routes = () => {
         <Route exact path="/quotes" component={Quotes} />
         <Route component={NotFound} />
       </Switch>
-    </Fragment>
+    </main>
   )
 }
 
