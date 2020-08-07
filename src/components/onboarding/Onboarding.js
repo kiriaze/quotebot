@@ -19,28 +19,30 @@ const Onboarding = ({
 
   // })
 
-  // const userOnboarded = (e) => {
-  //   // fire auth action for flag
-  //   // methodToUpdateState({...data})
-  //   setData({
-  //     ...data,
-  //     onboarded: true
-  //   })
-  // }
+  const userOnboarded = (e) => {
+    // fire auth action for flag
+    // methodToUpdateState({...data})
+    // setData({
+    //   ...data,
+    //   onboarded: true
+    // })
+  }
 
   if ( isAuthenticated && user.onboarded ) {
-    <Redirect to="/dashboard" />
+    return <Redirect to="/dashboard" />
   } else {
-    <div className="">
-      {/* mapbox static img */}
-      {/* mini robot blurb..animated? */}
-      {/* get started cta -> dash + state.user.onboarded=true */}
-      <Link to="/dashboard" onClick={e => userOnboarded(e)}>Get Started!</Link>
-    </div>
+    return (
+      <Fragment>
+        {/* mapbox static img */}
+        {/* mini robot blurb..animated? */}
+        {/* get started cta -> dash + state.user.onboarded=true */}
+        <Link to="/dashboard" onClick={e => userOnboarded(e)}>Get Started!</Link>
+      </Fragment>
+    )
   }
 }
 
-Onboarding.PropTypes = {
+Onboarding.propTypes = {
   auth: PropTypes.object.isRequired
 }
 

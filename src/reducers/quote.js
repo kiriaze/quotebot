@@ -2,7 +2,7 @@ import {
   GET_QUOTES,
   GET_QUOTE,
   QUOTE_ERROR,
-  UPDATE_LIKES
+  // UPDATE_LIKES
 } from '../actions/types'
 
 const initialState = {

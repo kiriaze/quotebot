@@ -15,6 +15,10 @@ export const getQuotes = () => async dispatch => {
   let quotesURL = `https://quotesondesign.com/wp-json/wp/v2/posts/?per_page=100`;
 
   try {
+
+    // fake timeout testing landing/loading screen
+    await new Promise((resolve, reject) => setTimeout(resolve, 3000))
+
     // check if we have data available in store/localStorage
     if ( !localStorage.getItem('quotes') ) {
       let res = await axios.get(`${quotesURL}`);
@@ -43,8 +47,9 @@ export const getQuotes = () => async dispatch => {
 }
 
 // get quote
-export const getQuote = (id = null) => async dispatch => {
+export const getQuote = () => async dispatch => {
   try {
+    let id = '';
     // no fetch, ref store/ls
     // @todo: load/save methods attached to store..subscription
     let quotes = JSON.parse(localStorage.getItem('quotes'))

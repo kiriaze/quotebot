@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { Link, Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import { getQuotes } from '../../actions/quote';
 
 // loading screen view
@@ -40,7 +40,7 @@ const Landing = ({
 Landing.propTypes = {
   auth: PropTypes.object.isRequired,
   quote: PropTypes.object.isRequired,
-  getQuotes: PropTypes.function.isRequired
+  getQuotes: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => ({

@@ -10,7 +10,7 @@ import QuoteItem from '../quotes/QuoteItem'
 const Dashboard = ({
   auth: {
     // user,
-    // isAuthenticated // redirect out
+    isAuthenticated // redirect out
   },
   quote: {
     quote,
@@ -21,6 +21,8 @@ const Dashboard = ({
   useEffect(() => {
     getQuote()
   }, [getQuote])
+
+  if ( !isAuthenticated ) return <Redirect to="/" />
 
   return loading ? (
     <span>loading placeholder...</span>
@@ -52,4 +54,6 @@ const mapStateToProps = state => ({
   quote: state.quote
 })
 
-export default connect(mapStateToProps, {})(Dashboard)
+export default connect(mapStateToProps, {
+  getQuote
+})(Dashboard)

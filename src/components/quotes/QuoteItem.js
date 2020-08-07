@@ -18,7 +18,7 @@ QuoteItem.defaultProps = {
   showMeta: false
 }
 
-QuoteItem.PropTypes = {
+QuoteItem.propTypes = {
   quote: PropTypes.object.isRequired
 }
 
