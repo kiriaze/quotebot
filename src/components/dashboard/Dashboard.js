@@ -40,6 +40,7 @@ const Dashboard = ({
     </Fragment>
   )
 }
+
 Dashboard.propTypes = {
   auth: PropTypes.object.isRequired,
   quote: PropTypes.object.isRequired,
