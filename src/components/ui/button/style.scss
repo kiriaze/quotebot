@@ -1,0 +1,16 @@
+// for quick proto w/ hmr
+// abstract to styled-components later
+.btn {
+  font-size: 1.5rem;
+  line-height: 4rem;
+  display: inline-block;
+  border-radius: .2rem;
+  padding: 0 2rem;
+  cursor: pointer;
+  
+  color: white;
+  background-color: var(--theme-colors-baseDark);
+  &:hover {
+    background-color: rgb(98, 58, 162);
+  }
+}
