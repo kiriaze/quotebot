@@ -1,6 +1,7 @@
 import React, { Fragment, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
+import { loadUser } from './actions/auth'
 import { Provider } from 'react-redux'
 import store from './store.js'
 
@@ -13,6 +14,10 @@ import { GlobalStyle, theme } from './theme'
 import './App.scss';
 
 const App = () => {
+
+  useEffect(() => {
+    store.dispatch(loadUser())
+  }, [])
 
   return (
     <ThemeProvider theme={theme}>
