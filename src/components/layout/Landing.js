@@ -2,13 +2,13 @@ import React, { Fragment, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Link, Redirect } from 'react-router-dom'
-import { getQuotes, getQuote } from '../../actions/quote';
+import { getQuotes } from '../../actions/quote';
 
 // loading screen view
 const Landing = ({
   auth: {
-    isAuthenticated,
     user,
+    isAuthenticated,
     // loading  // no need, maybe throw in a timeout
   },
   quote: {
