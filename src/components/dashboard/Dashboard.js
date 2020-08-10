@@ -45,20 +45,17 @@ const Dashboard = ({
   ) : (
     <DashMain>
       <TempNavigation />
-      <div className="rate-quote">
-        {
-          unviewedQuotes[0] ? (
-            <Fragment>
-              <XP level={viewedQuotes.length}>{viewedQuotes.length} XP</XP>
-              <Heading level="6">{unviewedQuotes.length} remaining</Heading>
-              <Heading level="2">Quote #{unviewedQuotes[0].id}</Heading>
-              <QuoteItem quote={unviewedQuotes[0]} />
-              <UserActions quote={unviewedQuotes[0]} />
-            </Fragment>
-          ) : 'No mas!'
-        }
-        {/* robo footer ctas */}
-      </div>
+      {
+        unviewedQuotes[0] ? (
+          <Fragment>
+            <XP level={viewedQuotes.length}>{viewedQuotes.length} XP</XP>
+            <Heading level="2">Quote #{unviewedQuotes[0].id}</Heading>
+            <QuoteItem quote={unviewedQuotes[0]} />
+            <UserActions quote={unviewedQuotes[0]} />
+          </Fragment>
+        ) : 'No mas!'
+      }
+      {/* robo footer ctas */}
     </DashMain>
   )
 }

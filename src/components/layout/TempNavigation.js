@@ -12,8 +12,8 @@ const StyledNav = styled.nav`
 const TempNavigation = () => {
   return (
     <StyledNav>
-      <Link to="/">Landing</Link>
-      <Link to="/onboarding">Onboarding</Link>
+      {/* <Link to="/">Landing</Link>
+      <Link to="/onboarding">Onboarding</Link> */}
       <Link to="/dashboard">Dashboard</Link>
       <Link to="/quotes">My Quotes</Link>
     </StyledNav>

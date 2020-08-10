@@ -10,7 +10,6 @@ const Quote = styled.div`
     }
   `}
   ${props => !props.showMeta && css`
-    // font-size: 4rem;
     line-height: 2;
   `}
   margin: 2rem 0 5rem;
@@ -35,7 +34,7 @@ const QuoteItem = ({ quote, showMeta }) => {
       <div dangerouslySetInnerHTML={{ __html: quote.content.rendered }} />
       <div className="meta">
         <cite>{quote.title.rendered}</cite>
-        {showMeta && (<span>{quote.likes === 1 ? 'Liked' : 'Disliked'} on 08.07.2020</span>)}
+        {showMeta && (<span>{quote.likes.count === 1 ? 'Liked' : 'Disliked'} on 08.07.2020</span>)}
       </div>
     </Quote>
   )
