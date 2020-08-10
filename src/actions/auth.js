@@ -11,7 +11,7 @@ export const loadUser = () => async dispatch => {
       data: {
         // only onboard flag, or user info like: 
         // ip/location, static map url, robot icon
-        onboarded: true // temp static
+        onboarded: false // temp static
       }
     }
     dispatch({

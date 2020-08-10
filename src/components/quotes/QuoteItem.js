@@ -3,7 +3,13 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 const Quote = styled.div`
-  margin: 4rem 0;
+  line-height: 2;
+  margin: 2rem 0 4rem;
+  cite {
+    display: block;
+    margin: 2rem 0 0;
+    font-style: italic;
+  }
 `
 
 const QuoteItem = ({ quote, showMeta }) => {

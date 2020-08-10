@@ -4,12 +4,41 @@ import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import { getQuotes } from '../../actions/quote'
 
-import Heading from '../ui/heading'
-// import { Button } from '../ui/button'
-import { StyledLink } from '../ui/link'
+import styled, { css } from 'styled-components'
 
+import Heading from '../ui/heading'
+
+import TempNavigation from '../layout/TempNavigation'
 import QuoteItem from '../quotes/QuoteItem'
 import UserActions from '../quotes/UserActions'
+
+const XP = styled.div`
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  color: white;
+  display: flex;
+  width: 5rem;
+  height: 5rem;
+  font-size: 1rem;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  background: var(--theme-colors-success);
+  transition: background .35s ease;
+  ${props => props.level >= 10 && css`
+    background: red;
+    // css animation; confetti/pop/bubbly
+  `}
+  ${props => props.level >= 20 && css`
+    background: orange;
+    // css animation; confetti/pop/bubbly
+  `}
+  ${props => props.level >= 30 && css`
+    background: purple;
+    // css animation; confetti/pop/bubbly
+  `}
+`
 
 // main app view
 const Dashboard = ({
@@ -30,20 +59,18 @@ const Dashboard = ({
   if ( !isAuthenticated ) return <Redirect to="/" />
 
   let unviewedQuotes = quotes.filter(q => !q.likes)
+  let viewedQuotes = quotes.filter(q => q.likes)
 
   return loading ? (
     <span>loading placeholder...</span>
   ) : (
     <Fragment>
-      {/* temp nav for demo, first 2 should redirect auto */}
-      <StyledLink variant="primary" to="/">Landing</StyledLink>
-      <StyledLink variant="success" to="/onboarding">Onboarding</StyledLink>
-      <StyledLink variant="info" to="/dashboard">Dashboard</StyledLink>
-      <StyledLink variant="danger" to="/quotes">My Quotes</StyledLink>
+      <TempNavigation />
       <div className="rate-quote">
         {
           unviewedQuotes[0] ? (
             <Fragment>
+              <XP level={viewedQuotes.length}>{viewedQuotes.length} XP</XP>
               <Heading level="6">{unviewedQuotes.length} remaining</Heading>
               <Heading level="2">Quote #{unviewedQuotes[0].id}</Heading>
               <QuoteItem quote={unviewedQuotes[0]} />

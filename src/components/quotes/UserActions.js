@@ -10,7 +10,7 @@ const StyledUA = styled.div`
   margin-top: 4rem;
   justify-content: space-between;
   > * {
-
+    width: 48%
   }
 `
 

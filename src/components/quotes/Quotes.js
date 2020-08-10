@@ -1,10 +1,11 @@
 import React, { Fragment, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { Link, Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import { getQuotes } from '../../actions/quote'
 import Heading from '../ui/heading'
 import QuoteItem from './QuoteItem'
+import TempNavigation from '../layout/TempNavigation'
 
 // my quotes view
 const Quotes = ({
@@ -28,11 +29,7 @@ const Quotes = ({
       <span>loading placeholder...</span>
     ) : (
       <Fragment>
-        {/* temp nav for demo, first 2 should redirect auto */}
-        <Link to="/">Landing</Link>
-        <Link to="/onboarding">Onboarding</Link>
-        <Link to="/dashboard">Dashboard</Link>
-        <Link to="/quotes">My Quotes</Link>
+        <TempNavigation />
         <div className="">
           <Heading level="2">My Quotes ({quotes && quotes.length})</Heading>
           {quotes && quotes.map(quote => (<QuoteItem key={quote.id} quote={quote} showMeta="true" />))}
