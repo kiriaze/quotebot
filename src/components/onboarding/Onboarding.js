@@ -5,7 +5,7 @@ import { Link, Redirect } from 'react-router-dom'
 import { Button } from '../ui/button'
 import styled from 'styled-components'
 import Main from '../layout/Main'
-import { loadUser } from '../../actions/auth'
+import { onboardUser } from '../../actions/auth'
 
 const TempMap = styled.div`
   width: 100%;
@@ -42,7 +42,7 @@ const Onboarding = ({
     isAuthenticated,
     // loading
   },
-  loadUser
+  onboardUser
 }) => {
 
   // or we could use useState
@@ -58,7 +58,7 @@ const Onboarding = ({
         onboarded: true
       }
     })
-    loadUser({...data})
+    onboardUser({...data})
   }
 
   if ( isAuthenticated && user.onboarded ) {
@@ -80,11 +80,14 @@ const Onboarding = ({
 }
 
 Onboarding.propTypes = {
-  auth: PropTypes.object.isRequired
+  auth: PropTypes.object.isRequired,
+  // onboardUser: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => ({
   auth: state.auth
 })
 
-export default connect(mapStateToProps, {loadUser})(Onboarding)
+export default connect(mapStateToProps, {
+  onboardUser
+})(Onboarding)
