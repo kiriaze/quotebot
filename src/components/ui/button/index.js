@@ -20,7 +20,6 @@ const variantStyles = props => {
       return css`
         background-color: ${props.theme.colors[props.variant]}
       `
-      break;
   }
 }
 export const buttonStyle = css`

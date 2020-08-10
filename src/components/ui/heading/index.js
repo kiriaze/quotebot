@@ -4,7 +4,7 @@ import mq from '../../../utils/mq'
 
 const sharedStyles = css`
   display: block;
-  font-weight: 700;
+  font-weight: 600;
 `;
 
 const handleLevel = props => {
@@ -12,6 +12,41 @@ const handleLevel = props => {
     case '1':
       return css`
         font-size: 2.6rem;
+        ${mq('small')} {
+          font-size: 4rem;
+        }
+      `
+    case '2':
+      return css`
+        font-size: 2.4rem;
+        ${mq('small')} {
+          font-size: 4rem;
+        }
+      `
+    case '3':
+      return css`
+        font-size: 2.2rem;
+        ${mq('small')} {
+          font-size: 4rem;
+        }
+      `
+    case '4':
+      return css`
+        font-size: 2rem;
+        ${mq('small')} {
+          font-size: 4rem;
+        }
+      `
+    case '5':
+      return css`
+        font-size: 1.8rem;
+        ${mq('small')} {
+          font-size: 4rem;
+        }
+      `
+     case '6':
+      return css`
+        font-size: 1.6rem;
         ${mq('small')} {
           font-size: 4rem;
         }

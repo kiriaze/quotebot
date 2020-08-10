@@ -2,8 +2,8 @@ import React, { Fragment, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Link, Redirect } from 'react-router-dom'
-import { getQuotes } from '../../actions/quote';
-
+import { getQuotes } from '../../actions/quote'
+import Heading from '../ui/heading'
 import QuoteItem from './QuoteItem'
 
 // my quotes view
@@ -19,6 +19,8 @@ const Quotes = ({
     getQuotes()
   }, [getQuotes])
 
+  quotes = quotes.filter(quote => quote.likes)
+
   if ( !isAuthenticated ) {
     return <Redirect to="/" />
   } else {
@@ -32,8 +34,8 @@ const Quotes = ({
         <Link to="/dashboard">Dashboard</Link>
         <Link to="/quotes">My Quotes</Link>
         <div className="">
-          <h1>My Quotes</h1>
-          {quotes && quotes.map(quote => <QuoteItem key={quote.id} quote={quote} showMeta="true" />)}
+          <Heading level="2">My Quotes ({quotes && quotes.length})</Heading>
+          {quotes && quotes.map(quote => (<QuoteItem key={quote.id} quote={quote} showMeta="true" />))}
         </div>
       </Fragment>
     )

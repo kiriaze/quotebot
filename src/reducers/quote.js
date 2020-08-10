@@ -2,7 +2,7 @@ import {
   GET_QUOTES,
   GET_QUOTE,
   QUOTE_ERROR,
-  // UPDATE_LIKES
+  UPDATE_LIKES
 } from '../actions/types'
 
 const initialState = {
@@ -33,17 +33,18 @@ export default function( state = initialState, action) {
         error: payload,
         loading: false
       }
-    // case UPDATE_LIKES:
-    //   return {
-    //     ...state,
-    //     // filter quotes for matching id, and append prop/val to object
-    //     // otherwise return quote
-    //     quotes: state.quotes.map(quote => quote.id === payload.id ? {
-    //       ...quote,
-    //       likes: payload.likes
-    //     } : quote ),
-    //     loading: false
-    //   }
+    case UPDATE_LIKES:
+      return {
+        ...state,
+        quotes: state.quotes.map(quote => quote.id === payload.id ? {
+          ...quote,
+          likes: {
+            count: payload.count,
+            date: payload.date
+          }
+        } : quote ),
+        loading: false
+      }
     default:
       return state
   }

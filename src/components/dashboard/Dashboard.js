@@ -2,13 +2,14 @@ import React, { Fragment, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
-import { getQuote } from '../../actions/quote'
+import { getQuotes } from '../../actions/quote'
 
 import Heading from '../ui/heading'
-import { Button } from '../ui/button'
+// import { Button } from '../ui/button'
 import { StyledLink } from '../ui/link'
 
 import QuoteItem from '../quotes/QuoteItem'
+import UserActions from '../quotes/UserActions'
 
 // main app view
 const Dashboard = ({
@@ -17,16 +18,18 @@ const Dashboard = ({
     isAuthenticated // redirect out
   },
   quote: {
-    quote,
+    quotes,
     loading
   },
-  getQuote
+  getQuotes
 }) => {
   useEffect(() => {
-    getQuote()
-  }, [getQuote])
+    getQuotes()
+  }, [getQuotes])
 
   if ( !isAuthenticated ) return <Redirect to="/" />
+
+  let unviewedQuotes = quotes.filter(q => !q.likes)
 
   return loading ? (
     <span>loading placeholder...</span>
@@ -37,10 +40,17 @@ const Dashboard = ({
       <StyledLink variant="success" to="/onboarding">Onboarding</StyledLink>
       <StyledLink variant="info" to="/dashboard">Dashboard</StyledLink>
       <StyledLink variant="danger" to="/quotes">My Quotes</StyledLink>
-      <div className="">
-        <Heading level="2">Dashboard</Heading>
-        {quote && (<QuoteItem quote={quote} />)}
-        {/* updateLikes ctas */}
+      <div className="rate-quote">
+        {
+          unviewedQuotes[0] ? (
+            <Fragment>
+              <Heading level="6">{unviewedQuotes.length} remaining</Heading>
+              <Heading level="2">Quote #{unviewedQuotes[0].id}</Heading>
+              <QuoteItem quote={unviewedQuotes[0]} />
+              <UserActions quote={unviewedQuotes[0]} />
+            </Fragment>
+          ) : 'No mas!'
+        }
         {/* robo footer ctas */}
       </div>
     </Fragment>
@@ -50,7 +60,7 @@ const Dashboard = ({
 Dashboard.propTypes = {
   auth: PropTypes.object.isRequired,
   quote: PropTypes.object.isRequired,
-  getQuote: PropTypes.func.isRequired
+  getQuotes: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = state => ({
@@ -59,5 +69,5 @@ const mapStateToProps = state => ({
 })
 
 export default connect(mapStateToProps, {
-  getQuote
+  getQuotes
 })(Dashboard)
