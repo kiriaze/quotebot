@@ -1,23 +1,42 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 const Quote = styled.div`
-  line-height: 2;
-  margin: 2rem 0 4rem;
+  ${props => props.showMeta && css`
+    p {
+      font-size: 1.5rem;
+      line-height: 1.8;
+    }
+  `}
+  ${props => !props.showMeta && css`
+    // font-size: 4rem;
+    line-height: 2;
+  `}
+  margin: 2rem 0 5rem;
   cite {
     display: block;
-    margin: 2rem 0 0;
     font-style: italic;
+  }
+  .meta {
+    display: flex;
+    margin: 2rem 0 0;
+    align-items: center;
+    justify-content: space-between;
+  }
+  span {
+    font-size: 1.2rem;
   }
 `
 
 const QuoteItem = ({ quote, showMeta }) => {
   return (
-    <Quote>
+    <Quote showMeta={showMeta}>
       <div dangerouslySetInnerHTML={{ __html: quote.content.rendered }} />
-      <cite>{quote.title.rendered}</cite>
-      {showMeta && (<span>{quote.likes === 1 ? 'Liked' : 'Disliked'} on 08.07.2020</span>)}
+      <div className="meta">
+        <cite>{quote.title.rendered}</cite>
+        {showMeta && (<span>{quote.likes === 1 ? 'Liked' : 'Disliked'} on 08.07.2020</span>)}
+      </div>
     </Quote>
   )
 }

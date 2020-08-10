@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const StyledLoader = styled.div`
+const StyledLocationLoader = styled.div`
   width: 30px;
   height: 30px;
   // margin: auto;
@@ -54,6 +54,15 @@ const StyledLoader = styled.div`
   }
 `;
 
-const Loader = () => <StyledLoader />
+export const LocationLoader = () => <StyledLocationLoader />
 
-export default Loader
+const StyledLoader = styled.div`
+  display: flex;
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+`
+
+export const Loader = () => <StyledLoader><span>loading placeholder...</span></StyledLoader>

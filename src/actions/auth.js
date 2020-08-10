@@ -4,14 +4,15 @@ import {
 } from './types'
 
 // basic auth
-export const loadUser = () => async dispatch => {
+export const loadUser = (data) => async dispatch => {
+  console.log(data)
   try {
     // fake call, return structured obj res
     const res = {
       data: {
         // only onboard flag, or user info like: 
         // ip/location, static map url, robot icon
-        onboarded: false // temp static
+        onboarded: data.onboarded || false // temp static
       }
     }
     dispatch({

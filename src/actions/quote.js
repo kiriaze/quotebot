@@ -9,8 +9,6 @@ import {
 // get quotes
 export const getQuotes = () => async dispatch => {
 
-  // api endpoint def; set in config or lets just place it here for now
-  // remove rand param, unsure if wp verifies whether paginated results are correct and keep it random via getQuote()
   // let quotesURL = `https://quotesondesign.com/wp-json/wp/v2/posts/?orderby=rand&per_page=100`;
   let quotesURL = `https://quotesondesign.com/wp-json/wp/v2/posts/?per_page=100`;
 
@@ -24,10 +22,6 @@ export const getQuotes = () => async dispatch => {
       let res = await axios.get(`${quotesURL}`);
       // store it
       localStorage.setItem('quotes', JSON.stringify(res.data))
-      // @todo:
-      // should we preemptively map thru and attach likes prop to each quote prior to storing stringified data
-      // or should we only do this when user interacts with actions
-      // and find matching object id, add prop, then merge back into quotes array + store/LS updates?
     }
     
     dispatch({

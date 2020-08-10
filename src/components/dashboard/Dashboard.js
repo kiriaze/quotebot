@@ -7,37 +7,16 @@ import { getQuotes } from '../../actions/quote'
 import styled, { css } from 'styled-components'
 
 import Heading from '../ui/heading'
+import Main from '../layout/Main'
+import { Loader } from '../ui/loader'
+import XP from '../ui/xp'
 
 import TempNavigation from '../layout/TempNavigation'
 import QuoteItem from '../quotes/QuoteItem'
 import UserActions from '../quotes/UserActions'
 
-const XP = styled.div`
-  position: absolute;
-  top: 2rem;
-  right: 2rem;
-  color: white;
-  display: flex;
-  width: 5rem;
-  height: 5rem;
-  font-size: 1rem;
-  border-radius: 50%;
-  align-items: center;
-  justify-content: center;
-  background: var(--theme-colors-success);
-  transition: background .35s ease;
-  ${props => props.level >= 10 && css`
-    background: red;
-    // css animation; confetti/pop/bubbly
-  `}
-  ${props => props.level >= 20 && css`
-    background: orange;
-    // css animation; confetti/pop/bubbly
-  `}
-  ${props => props.level >= 30 && css`
-    background: purple;
-    // css animation; confetti/pop/bubbly
-  `}
+const DashMain = styled(Main)`
+
 `
 
 // main app view
@@ -62,9 +41,9 @@ const Dashboard = ({
   let viewedQuotes = quotes.filter(q => q.likes)
 
   return loading ? (
-    <span>loading placeholder...</span>
+    <Loader />
   ) : (
-    <Fragment>
+    <DashMain>
       <TempNavigation />
       <div className="rate-quote">
         {
@@ -80,7 +59,7 @@ const Dashboard = ({
         }
         {/* robo footer ctas */}
       </div>
-    </Fragment>
+    </DashMain>
   )
 }
 

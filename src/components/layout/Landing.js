@@ -7,18 +7,16 @@ import styled from 'styled-components'
 import Heading from '../ui/heading'
 import logo from '../../assets/images/app-logo-2.gif'
 // import logo from '../../assets/images/app-logo.svg'
-import Loader from '../ui/loader'
+import { LocationLoader } from '../ui/loader'
 
-const StyledLanding = styled.div`
+import Main from '../layout/Main'
+
+const StyledLanding = styled(Main)`
   display: flex;
   flex-flow: column;
-  align-items: center;
-  min-height: 100vh;
   text-align: center;
+  align-items: center;
   justify-content: center;
-
-  margin: auto;
-  max-width: 56rem;
 
   .logo {
     max-width: 20rem;
@@ -56,12 +54,13 @@ const Landing = ({
   }, [getQuotes])
 
   return loading ? 
+  // return (
     // loading screen content
     <StyledLanding>
       <img className="logo" src={logo} alt=""/>
       <Heading level="1">QuoteBot</Heading>
       <p>Welcome to QuoteBot, where we pair you with your own unique robot to help you find inspirational quotes!</p>
-      <Loader />
+      <LocationLoader />
       <small>Hold on tight while we find your robot…beep boop</small>
     </StyledLanding>
   : (
