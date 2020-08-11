@@ -14,8 +14,8 @@ export const getQuotes = () => async dispatch => {
 
   try {
 
-    // fake timeout testing landing/loading screen
-    await new Promise((resolve, reject) => setTimeout(resolve, 3000))
+    // // fake timeout testing landing/loading screen
+    // await new Promise((resolve, reject) => setTimeout(resolve, 3000))
 
     // check if we have data available in store/localStorage
     if ( !localStorage.getItem('quotes') ) {
@@ -86,6 +86,3 @@ export const updateLikes = (quote, val) => async dispatch => {
     // 
   }
 }
-
-// robo voice
-// http://api.voicerss.org/?key=0bb282d009b0476f9790b9b76954f35e&src=To+buy+books+would+be+a+good+thing+if+we+also+could+buy+the+time+to+read+them.&hl=en-us

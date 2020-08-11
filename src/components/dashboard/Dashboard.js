@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
@@ -44,11 +44,25 @@ const Dashboard = ({
   useEffect(() => {
     getQuotes()
   }, [getQuotes])
+  
+  const [robo, setRobo] = useState({
+    url: ''
+  })
 
   if ( !isAuthenticated ) return <Redirect to="/" />
 
   let unviewedQuotes = quotes.filter(q => !q.likes)
   let viewedQuotes = quotes.filter(q => q.likes)
+
+  const playRobot = e => {
+    e.preventDefault()
+    // remove html and replace spaces with +
+    let quoteText = unviewedQuotes[0].content.rendered.replace(/(<([^>]+)>)/gi, '').replace(/ /g, '+')
+    // console.log(quoteText)
+    setRobo({
+      url: `http://api.voicerss.org/?key=0bb282d009b0476f9790b9b76954f35e&src=${quoteText}&hl=en-us`
+    })
+  }
 
   return loading ? (
     <Loader />
@@ -62,7 +76,8 @@ const Dashboard = ({
             <Heading level="2">Quote #{unviewedQuotes[0].id}</Heading>
             <RoboCTA>
               <RoboIcon src={user.robot} />
-              <Button variant="warning">Robotize me!</Button>
+              <Button variant="warning" onClick={e => playRobot(e)}>Robotize me!</Button>
+              <audio src={robo.url} autoPlay />
             </RoboCTA>
             <QuoteItem quote={unviewedQuotes[0]} />
             <UserActions quote={unviewedQuotes[0]} />

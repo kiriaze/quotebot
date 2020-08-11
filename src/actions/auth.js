@@ -10,7 +10,12 @@ import axios from 'axios'
 export const loadUser = () => async dispatch => {
   try {
     let user = localStorage.getItem('user');
-    if ( !user ) {
+    if ( user ) {
+      dispatch({
+        type: USER_LOADED,
+        payload: JSON.parse(user)
+      })
+    } else {
       let ipRes = await axios.get('http://ip-api.com/json')
       let ipAddress = ipRes.data.query.trim('"'),
           city = ipRes.data.city,
@@ -29,15 +34,15 @@ export const loadUser = () => async dispatch => {
         map: mapRes.config.url
       }
       localStorage.setItem('user', JSON.stringify(user))
+      dispatch({
+        type: USER_LOADED,
+        payload: user
+      })
     }
-    dispatch({
-      type: USER_LOADED,
-      payload: JSON.parse(user)
-    })
   } catch (error) {
     // not dispatching errors for now,
     // but typically would implement something like alerts/notifications/toasters..
-    // console.error(error)
+    console.error(error)
   }
 }
 

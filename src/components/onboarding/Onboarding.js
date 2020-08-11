@@ -5,9 +5,10 @@ import { Link, Redirect } from 'react-router-dom'
 import { Button } from '../ui/button'
 import styled from 'styled-components'
 import Main from '../layout/Main'
-import { onboardUser } from '../../actions/auth'
+import { loadUser, onboardUser } from '../../actions/auth'
+import { Loader } from '../ui/loader'
 
-const TempMap = styled.div`
+const Map = styled.img`
   width: 100%;
   height: 15rem;
   display: block;
@@ -40,12 +41,12 @@ const Onboarding = ({
   auth: {
     user,
     isAuthenticated,
-    // loading
+    loading
   },
+  loadUser,
   onboardUser
 }) => {
 
-  // or we could use useState
   const [data, setData] = useState({
     user: {
       onboarded: false
@@ -63,25 +64,28 @@ const Onboarding = ({
 
   if ( isAuthenticated && user.onboarded ) {
     return <Redirect to="/dashboard" />
-  } else {
-    return (
-      <Main>
-        <img src={user.map} alt=""/>
-        <TempMap />
-        {/* mini robot blurb..animated? */}
-        <RobotBlurb>
-          <p>I was built in {user.location.city} to find quotes for you. Rate each quote and I will try to find even better ones.</p>
-          <div className="robot-icon"></div>
-        </RobotBlurb>
-        <Button variant="info" to="/dashboard" onClick={e => userOnboarded(e)}>Get Started!</Button>
-      </Main>
-    )
-  }
+  } 
+
+  return loading ? (
+    <Loader />
+  ) : (
+    <Main>
+      <Map src={user && user.map} />
+      {/* mini robot blurb..animated? */}
+      <RobotBlurb>
+        <p>I was built in {user && user.location.city} to find quotes for you. Rate each quote and I will try to find even better ones.</p>
+        <div className="robot-icon"></div>
+      </RobotBlurb>
+      <Button variant="info" to="/dashboard" onClick={e => userOnboarded(e)}>Get Started!</Button>
+    </Main>
+  )
+
 }
 
 Onboarding.propTypes = {
   auth: PropTypes.object.isRequired,
-  // onboardUser: PropTypes.func.isRequired
+  loadUser: PropTypes.func.isRequired,
+  onboardUser: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => ({
@@ -89,5 +93,6 @@ const mapStateToProps = state => ({
 })
 
 export default connect(mapStateToProps, {
+  loadUser,
   onboardUser
 })(Onboarding)
