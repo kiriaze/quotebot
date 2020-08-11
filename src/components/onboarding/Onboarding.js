@@ -66,11 +66,11 @@ const Onboarding = ({
   } else {
     return (
       <Main>
-        {/* mapbox static img */}
+        <img src={user.map} alt=""/>
         <TempMap />
         {/* mini robot blurb..animated? */}
         <RobotBlurb>
-          <p>I was built in San Francisco to find quotes for you. Rate each quote and I will try to find even better ones.</p>
+          <p>I was built in {user.location.city} to find quotes for you. Rate each quote and I will try to find even better ones.</p>
           <div className="robot-icon"></div>
         </RobotBlurb>
         <Button variant="info" to="/dashboard" onClick={e => userOnboarded(e)}>Get Started!</Button>

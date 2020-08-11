@@ -7,13 +7,23 @@ import { getQuotes } from '../../actions/quote'
 import styled, { css } from 'styled-components'
 
 import Heading from '../ui/heading'
+import { Button } from '../ui/button'
 import Main from '../layout/Main'
 import { Loader } from '../ui/loader'
 import XP from '../ui/xp'
-
 import TempNavigation from '../layout/TempNavigation'
 import QuoteItem from '../quotes/QuoteItem'
 import UserActions from '../quotes/UserActions'
+
+const RoboCTA = styled.div`
+  display: flex;
+  margin: 2rem 0 0;
+`
+
+const RoboIcon = styled.img`
+  width: 5rem;
+  margin-right: 2rem;
+`
 
 const DashMain = styled(Main)`
 
@@ -22,7 +32,7 @@ const DashMain = styled(Main)`
 // main app view
 const Dashboard = ({
   auth: {
-    // user,
+    user,
     isAuthenticated // redirect out
   },
   quote: {
@@ -50,12 +60,15 @@ const Dashboard = ({
           <Fragment>
             <XP level={viewedQuotes.length}>{viewedQuotes.length} XP</XP>
             <Heading level="2">Quote #{unviewedQuotes[0].id}</Heading>
+            <RoboCTA>
+              <RoboIcon src={user.robot} />
+              <Button variant="warning">Robotize me!</Button>
+            </RoboCTA>
             <QuoteItem quote={unviewedQuotes[0]} />
             <UserActions quote={unviewedQuotes[0]} />
           </Fragment>
         ) : 'No mas!'
       }
-      {/* robo footer ctas */}
     </DashMain>
   )
 }
